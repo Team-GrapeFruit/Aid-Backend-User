@@ -3,7 +3,7 @@ package com.grapefruit.aid.domain.store.service.impl
 import com.grapefruit.aid.domain.seat.repository.SeatRepository
 import com.grapefruit.aid.domain.store.entity.Store
 import com.grapefruit.aid.domain.store.exception.StoreNotFoundException
-import com.grapefruit.aid.domain.store.presentation.dto.request.StoreDetailReqDto
+import com.grapefruit.aid.domain.store.presentation.dto.response.StoreDetailResDto
 import com.grapefruit.aid.domain.store.repository.StoreRepository
 import com.grapefruit.aid.domain.store.service.StoreDetailService
 import org.springframework.data.repository.findByIdOrNull
@@ -16,11 +16,11 @@ class StoreDetailServiceImpl(
     private val seatRepository: SeatRepository,
     private val storeRepository: StoreRepository
 ): StoreDetailService {
-    override fun execute(storeId: Long): StoreDetailReqDto {
+    override fun execute(storeId: Long): StoreDetailResDto {
         val store: Store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
-        val seatList : List<StoreDetailReqDto.SingleSeatDto> = seatRepository.findAllByStore(store)
-            .map { seat -> StoreDetailReqDto.SingleSeatDto(seat)}
+        val seatList : List<StoreDetailResDto.SingleSeatDto> = seatRepository.findAllByStore(store)
+            .map { seat -> StoreDetailResDto.SingleSeatDto(seat)}
 
-        return StoreDetailReqDto(store, seatList)
+        return StoreDetailResDto(store, seatList)
     }
 }

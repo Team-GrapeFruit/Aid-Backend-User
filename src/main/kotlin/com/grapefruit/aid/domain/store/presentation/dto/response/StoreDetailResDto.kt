@@ -1,9 +1,9 @@
-package com.grapefruit.aid.domain.store.presentation.dto.request
+package com.grapefruit.aid.domain.store.presentation.dto.response
 
 import com.grapefruit.aid.domain.seat.entity.Seat
 import com.grapefruit.aid.domain.store.entity.Store
 
-data class StoreDetailReqDto(
+data class StoreDetailResDto(
     val storeId: Long,
     val storeName: String,
     val information: String,
