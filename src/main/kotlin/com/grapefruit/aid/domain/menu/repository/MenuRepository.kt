@@ -1,4 +1,7 @@
 package com.grapefruit.aid.domain.menu.repository
 
-class MenuRepository {
+import com.grapefruit.aid.domain.menu.entity.Menu
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface MenuRepository: JpaRepository<Menu, Long> {
 }
