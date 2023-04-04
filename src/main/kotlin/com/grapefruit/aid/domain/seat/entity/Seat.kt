@@ -1,6 +1,7 @@
 package com.grapefruit.aid.domain.seat.entity
 
 import com.grapefruit.aid.domain.store.entity.Store
+import com.grapefruit.aid.domain.user.entity.User
 import com.grapefruit.aid.global.entity.BaseIdEntity
 import javax.persistence.*
 
@@ -15,4 +16,15 @@ class Seat (
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @Column(name = "store_id", nullable = false)
     val store: Store
-): BaseIdEntity()
+): BaseIdEntity() {
+    fun updateEnableState(): Seat {
+        val updatedSeat = Seat(
+            seatNum = this.seatNum,
+            customerNum = this.customerNum,
+            enabled = true,
+            store = this.store
+        )
+        updatedSeat.id = this.id
+        return updatedSeat
+    }
+}
