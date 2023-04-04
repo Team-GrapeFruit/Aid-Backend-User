@@ -5,7 +5,12 @@ import com.grapefruit.aid.domain.seat.exception.SeatNotFoundException
 import com.grapefruit.aid.domain.seat.repository.SeatRepository
 import com.grapefruit.aid.domain.seat.service.UseSeatService
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import java.lang.Exception
 
+@Service
+@Transactional(rollbackFor = [Exception::class])
 class UseSeatServiceImpl(
     private val seatRepository: SeatRepository
 ): UseSeatService {
