@@ -27,4 +27,15 @@ class Seat (
         updatedSeat.id = this.id
         return updatedSeat
     }
+
+    fun updateDisableState(): Seat {
+        val updatedSeat = Seat(
+            seatNum = this.seatNum,
+            customerNum = this.customerNum,
+            enabled = false,
+            store = this.store
+        )
+        updatedSeat.id = this.id
+        return updatedSeat
+    }
 }
