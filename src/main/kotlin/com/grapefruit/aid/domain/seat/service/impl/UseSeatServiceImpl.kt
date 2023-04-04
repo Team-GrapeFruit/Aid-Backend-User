@@ -1,6 +1,7 @@
 package com.grapefruit.aid.domain.seat.service.impl
 
 import com.grapefruit.aid.domain.seat.entity.Seat
+import com.grapefruit.aid.domain.seat.exception.SeatAlreadyUsedException
 import com.grapefruit.aid.domain.seat.exception.SeatNotFoundException
 import com.grapefruit.aid.domain.seat.repository.SeatRepository
 import com.grapefruit.aid.domain.seat.service.UseSeatService
@@ -16,6 +17,8 @@ class UseSeatServiceImpl(
 ): UseSeatService {
     override fun execute(seatId: Long) {
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
+        if(seat.enabled)
+            throw SeatAlreadyUsedException()
         seatRepository.save(seat.updateEnableState())
     }
 }
