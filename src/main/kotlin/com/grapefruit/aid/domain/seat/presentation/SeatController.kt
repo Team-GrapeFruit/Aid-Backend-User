@@ -17,4 +17,10 @@ class SeatController(
         userSeatService.execute(seatId)
         return ResponseEntity.noContent().build()
     }
+
+    @PatchMapping("/cancel/{seat_id}")
+    fun unUseSeat(@PathVariable("seat_id") seatId: Long): ResponseEntity<Void> {
+        userSeatService.execute(seatId)
+        return ResponseEntity.noContent().build()
+    }
 }
