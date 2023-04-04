@@ -14,5 +14,7 @@ class Order(
     val seat: Seat,
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @Column(name = "menu_id", nullable = false)
-    val menu: Menu
+    val menu: Menu,
+    @Column(name = "store_id", nullable = true)
+    val storeId: Long
 ): BaseIdEntity()
