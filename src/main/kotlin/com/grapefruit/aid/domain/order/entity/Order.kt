@@ -2,6 +2,7 @@ package com.grapefruit.aid.domain.order.entity
 
 import com.grapefruit.aid.domain.menu.entity.Menu
 import com.grapefruit.aid.domain.seat.entity.Seat
+import com.grapefruit.aid.domain.store.entity.Store
 import com.grapefruit.aid.global.entity.BaseIdEntity
 import javax.persistence.*
 
@@ -15,6 +16,7 @@ class Order(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @Column(name = "menu_id", nullable = false)
     val menu: Menu,
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @Column(name = "store_id", nullable = true)
-    val storeId: Long
+    val store: Store
 ): BaseIdEntity()
