@@ -1,6 +1,8 @@
 package com.grapefruit.aid.domain.order.entity
 
 import com.grapefruit.aid.domain.menu.entity.Menu
+import com.grapefruit.aid.domain.order.presentation.dto.MenuInfoDto
+import com.grapefruit.aid.domain.order.presentation.dto.request.CreateOrderReqDto
 import com.grapefruit.aid.domain.seat.entity.Seat
 import com.grapefruit.aid.domain.store.entity.Store
 import com.grapefruit.aid.global.entity.BaseIdEntity
@@ -19,4 +21,11 @@ class Order(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @Column(name = "store_id", nullable = true)
     val store: Store
-): BaseIdEntity()
+): BaseIdEntity() {
+    constructor(store: Store, seat: Seat, menuInfoDto: MenuInfoDto): this(
+        store = store,
+        seat = seat,
+        menu = menuInfoDto.menu,
+        quantity = menuInfoDto.quantity
+    )
+}
