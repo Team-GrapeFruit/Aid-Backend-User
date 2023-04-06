@@ -13,14 +13,10 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional(readOnly = true)
 class StoreDetailServiceImpl(
-    private val seatRepository: SeatRepository,
     private val storeRepository: StoreRepository
 ): StoreDetailService {
     override fun execute(storeId: Long): StoreDetailResDto {
         val store: Store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
-        val seatList : List<StoreDetailResDto.SingleSeatDto> = seatRepository.findAllByStore(store)
-            .map { seat -> StoreDetailResDto.SingleSeatDto(seat)}
-
-        return StoreDetailResDto(store, seatList)
+        return StoreDetailResDto(store)
     }
 }
