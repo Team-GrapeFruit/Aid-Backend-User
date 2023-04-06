@@ -30,10 +30,12 @@ class CreateOrderServiceImpl(
         val store: Store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
         val orders: List<Order> = createOrderReqDto.menusReqDto
-            .map {
-                val dto = MenuInfoDto(menuRepository.findByIdOrNull(it.menuId) ?: throw MenuNotFoundException(), it.quantity)
-                Order(store, seat, dto)
-            }
+            .map { MenuInfoDto(findMenu(it.menuId), it.quantity) }
+            .map { Order(store, seat, it) }
+
         orderRepository.saveAll(orders)
     }
+
+    private fun findMenu(menuId: Long): Menu =
+        menuRepository.findByIdOrNull(menuId) ?: throw MenuNotFoundException()
 }
