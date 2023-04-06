@@ -7,7 +7,11 @@ import com.grapefruit.aid.domain.store.entity.Store
 import com.grapefruit.aid.domain.store.exception.StoreNotFoundException
 import com.grapefruit.aid.domain.store.repository.StoreRepository
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
+@Service
+@Transactional(readOnly = true)
 class SeatListServiceImpl(
     private val seatRepository: SeatRepository,
     private val storeRepository: StoreRepository
