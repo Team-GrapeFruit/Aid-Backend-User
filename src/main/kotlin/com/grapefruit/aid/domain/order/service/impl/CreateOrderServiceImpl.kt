@@ -29,12 +29,11 @@ class CreateOrderServiceImpl(
     override fun execute(storeId: Long, seatId: Long, createOrderReqDto: CreateOrderReqDto) {
         val store: Store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
-        createOrderReqDto.menusReqDto
+        val orders: List<Order> = createOrderReqDto.menusReqDto
             .map {
                 val dto = MenuInfoDto(menuRepository.findByIdOrNull(it.menuId) ?: throw MenuNotFoundException(), it.quantity)
-                val order = Order(store, seat, dto)
-                orderRepository.save(order)
+                Order(store, seat, dto)
             }
-
+        orderRepository.saveAll(orders)
     }
 }
