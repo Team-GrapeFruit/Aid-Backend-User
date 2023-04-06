@@ -17,10 +17,9 @@ class OrderController(
     private val createOrderService: CreateOrderService
 ) {
     @PostMapping
-    fun createOrder(@RequestParam storeId: Long,
-                    @RequestParam seatId: Long,
+    fun createOrder(@RequestParam seatId: Long,
                     @RequestBody @Valid createOrderReqDto: CreateOrderReqDto): ResponseEntity<Void> {
-        createOrderService.execute(storeId, seatId, createOrderReqDto)
+        createOrderService.execute(seatId, createOrderReqDto)
         return ResponseEntity(HttpStatus.CREATED)
     }
 }

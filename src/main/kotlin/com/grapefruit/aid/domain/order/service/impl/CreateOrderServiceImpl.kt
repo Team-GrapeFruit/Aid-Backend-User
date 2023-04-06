@@ -11,9 +11,6 @@ import com.grapefruit.aid.domain.order.service.CreateOrderService
 import com.grapefruit.aid.domain.seat.entity.Seat
 import com.grapefruit.aid.domain.seat.exception.SeatNotFoundException
 import com.grapefruit.aid.domain.seat.repository.SeatRepository
-import com.grapefruit.aid.domain.store.entity.Store
-import com.grapefruit.aid.domain.store.exception.StoreNotFoundException
-import com.grapefruit.aid.domain.store.repository.StoreRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -23,16 +20,13 @@ import org.springframework.transaction.annotation.Transactional
 class CreateOrderServiceImpl(
     private val menuRepository: MenuRepository,
     private val orderRepository: OrderRepository,
-    private val seatRepository: SeatRepository,
-    private val storeRepository: StoreRepository
+    private val seatRepository: SeatRepository
 ): CreateOrderService {
-    override fun execute(storeId: Long, seatId: Long, createOrderReqDto: CreateOrderReqDto) {
-        val store: Store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
+    override fun execute(seatId: Long, createOrderReqDto: CreateOrderReqDto) {
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
         val orders: List<Order> = createOrderReqDto.menusReqDto
             .map { MenuInfoDto(findMenu(it.menuId), it.quantity) }
-            .map { Order(store, seat, it) }
-
+            .map { Order(seat, it) }
         orderRepository.saveAll(orders)
     }
 

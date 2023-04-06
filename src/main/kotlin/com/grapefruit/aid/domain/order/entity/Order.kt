@@ -17,12 +17,8 @@ class Order(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "menu_id", nullable = false)
     val menu: Menu,
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    @JoinColumn(name = "store_id", nullable = false)
-    val store: Store
 ): BaseIdEntity() {
-    constructor(store: Store, seat: Seat, menuInfoDto: MenuInfoDto): this(
-        store = store,
+    constructor(seat: Seat, menuInfoDto: MenuInfoDto): this(
         seat = seat,
         menu = menuInfoDto.menu,
         quantity = menuInfoDto.quantity
