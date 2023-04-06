@@ -16,6 +16,6 @@ class Menu(
     @Column(name = "menu_img_url", nullable = true)
     val menuImgURL: String? = null,
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    @Column(name = "store_id", nullable = false)
+    @JoinColumn(name = "store_id", nullable = false)
     val store: Store
 ):BaseIdEntity()

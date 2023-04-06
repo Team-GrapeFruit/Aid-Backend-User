@@ -14,7 +14,7 @@ class Seat (
     @Column(nullable = false)
     val enabled: Boolean,
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    @Column(name = "store_id", nullable = false)
+    @JoinColumn(name = "store_id", nullable = false)
     val store: Store
 ): BaseIdEntity() {
     fun updateEnableState(): Seat {
