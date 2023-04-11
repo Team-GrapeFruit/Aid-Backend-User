@@ -1,9 +1,9 @@
-package com.grapefruit.aid.domain.order.presentation.dto.request
+package com.grapefruit.aid.domain.purchase.presentation.dto.request
 
 import com.grapefruit.aid.global.entity.BaseIdEntity
 import javax.validation.constraints.NotNull
 
-data class CreateOrderReqDto(
+data class CreatePurchaseReqDto(
     val menusReqDto: List<MenuReqDto>
 ): BaseIdEntity() {
     data class MenuReqDto(

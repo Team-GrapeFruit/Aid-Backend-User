@@ -1,4 +1,4 @@
-package com.grapefruit.aid.domain.order.presentation.dto
+package com.grapefruit.aid.domain.purchase.presentation.dto
 
 import com.grapefruit.aid.domain.menu.entity.Menu
 

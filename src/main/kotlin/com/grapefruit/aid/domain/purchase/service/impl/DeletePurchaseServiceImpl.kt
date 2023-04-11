@@ -1,8 +1,8 @@
-package com.grapefruit.aid.domain.order.service.impl
+package com.grapefruit.aid.domain.purchase.service.impl
 
-import com.grapefruit.aid.domain.order.entity.Order
-import com.grapefruit.aid.domain.order.repository.OrderRepository
-import com.grapefruit.aid.domain.order.service.DeleteOrderService
+import com.grapefruit.aid.domain.purchase.entity.Purchase
+import com.grapefruit.aid.domain.purchase.repository.PurchaseRepository
+import com.grapefruit.aid.domain.purchase.service.DeletePurchaseService
 import com.grapefruit.aid.domain.seat.entity.Seat
 import com.grapefruit.aid.domain.seat.exception.SeatNotFoundException
 import com.grapefruit.aid.domain.seat.repository.SeatRepository
@@ -12,17 +12,17 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(rollbackFor = [Exception::class])
-class DeleteOrderServiceImpl(
+class DeletePurchaseServiceImpl(
     private val seatRepository: SeatRepository,
-    private val orderRepository: OrderRepository
-): DeleteOrderService {
+    private val purchaseRepository: PurchaseRepository
+): DeletePurchaseService {
     override fun execute(seatId: Long) {
-        orderRepository.deleteAll(findOrder(seatId))
+        purchaseRepository.deleteAll(findOrder(seatId))
     }
 
-    private fun findOrder(seatId: Long): List<Order> {
+    private fun findOrder(seatId: Long): List<Purchase> {
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
-        return orderRepository.findAllBySeat(seat)
+        return purchaseRepository.findAllBySeat(seat)
     }
 
 }
