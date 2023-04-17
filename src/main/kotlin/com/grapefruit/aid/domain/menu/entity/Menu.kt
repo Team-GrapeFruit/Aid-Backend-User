@@ -10,6 +10,8 @@ class Menu(
     @Column(name = "menu_name", nullable = false)
     @field:Size(max = 20)
     val menuName: String,
+    @Column(name = "cost")
+    val cost: Long,
     @Column(name = "description", nullable = false)
     @field:Size(max = 80)
     val description: String,
