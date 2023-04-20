@@ -1,6 +1,5 @@
 package com.grapefruit.aid.domain.menu.service.impl
 
-import com.grapefruit.aid.domain.menu.entity.Menu
 import com.grapefruit.aid.domain.menu.presentation.dto.response.GetMenuListResDto
 import com.grapefruit.aid.domain.menu.repository.MenuRepository
 import com.grapefruit.aid.domain.menu.service.GetMenuListService

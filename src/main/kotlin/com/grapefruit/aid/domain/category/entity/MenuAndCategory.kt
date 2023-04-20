@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne
 class MenuAndCategory(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "menu_id", nullable = false)
-    private val menu: Menu,
+    val menu: Menu,
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "category_id", nullable = false)
-    private val category: Category
+    val category: Category
 ): BaseIdEntity()
