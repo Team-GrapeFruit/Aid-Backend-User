@@ -2,7 +2,7 @@ package com.grapefruit.aid.domain.menu.presentation.dto.response
 
 import com.grapefruit.aid.domain.menu.entity.Menu
 
-data class SingleMenuListResDto(
+data class GetMenuListResDto(
     val menuId: Long,
     val menuName: String,
     val cost: Long,
