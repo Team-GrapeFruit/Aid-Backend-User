@@ -21,7 +21,7 @@ class Seat (
         val updatedSeat = Seat(
             seatNum = this.seatNum,
             customerNum = this.customerNum,
-            enabled = true,
+            enabled = false,
             store = this.store
         )
         updatedSeat.id = this.id
@@ -32,7 +32,7 @@ class Seat (
         val updatedSeat = Seat(
             seatNum = this.seatNum,
             customerNum = this.customerNum,
-            enabled = false,
+            enabled = true,
             store = this.store
         )
         updatedSeat.id = this.id
