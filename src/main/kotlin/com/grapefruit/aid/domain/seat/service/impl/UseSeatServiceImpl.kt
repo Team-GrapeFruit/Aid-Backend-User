@@ -19,6 +19,6 @@ class UseSeatServiceImpl(
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
         if(!seat.enabled)
             throw SeatAlreadyUsedException()
-        seatRepository.save(seat.updateEnableState())
+        seatRepository.save(seat.updateDisableState())
     }
 }

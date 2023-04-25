@@ -18,6 +18,6 @@ class UnUseSeatServiceImpl(
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
         if(seat.enabled)
             throw SeatAlreadyUnUsedException()
-        seatRepository.save(seat.updateDisableState())
+        seatRepository.save(seat.updateEnableState())
     }
 }
