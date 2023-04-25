@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull
 
 data class CreatePurchaseReqDto(
     val menusReqDto: List<MenuReqDto>
-): BaseIdEntity() {
+) {
     data class MenuReqDto(
         @field:NotNull
         val menuId: Long,

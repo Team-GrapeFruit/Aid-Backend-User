@@ -16,10 +16,4 @@ class Purchase(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "menu_id", nullable = false)
     val menu: Menu,
-): BaseIdEntity() {
-    constructor(seat: Seat, menuInfoDto: MenuInfoDto): this(
-        seat = seat,
-        menu = menuInfoDto.menu,
-        quantity = menuInfoDto.quantity
-    )
-}
+): BaseIdEntity()
