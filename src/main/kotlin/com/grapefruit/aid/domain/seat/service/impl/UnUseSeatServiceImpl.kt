@@ -16,7 +16,7 @@ class UnUseSeatServiceImpl(
 ): UnUseSeatService {
     override fun execute(seatId: Long) {
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
-        if(!seat.enabled)
+        if(seat.enabled)
             throw SeatAlreadyUnUsedException()
         seatRepository.save(seat.updateDisableState())
     }

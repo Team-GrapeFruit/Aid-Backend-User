@@ -17,7 +17,7 @@ class UseSeatServiceImpl(
 ): UseSeatService {
     override fun execute(seatId: Long) {
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
-        if(seat.enabled)
+        if(!seat.enabled)
             throw SeatAlreadyUsedException()
         seatRepository.save(seat.updateEnableState())
     }
