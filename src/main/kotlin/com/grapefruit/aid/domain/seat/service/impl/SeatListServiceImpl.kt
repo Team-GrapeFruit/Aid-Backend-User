@@ -16,10 +16,9 @@ class SeatListServiceImpl(
     private val seatRepository: SeatRepository,
     private val storeRepository: StoreRepository
 ): SeatListService {
-    override fun execute(storeId: Long): List<SingleSeatResponse>
-        = seatRepository.findAllByStore(findStore(storeId))
-        .map { seat -> SingleSeatResponse(seat)}
-
-    private fun findStore(storeId: Long): Store
-        = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
+    override fun execute(storeId: Long): List<SingleSeatResponse> {
+        val store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
+        return seatRepository.findAllByStore(store)
+            .map { SingleSeatResponse(it) }
+    }
 }
