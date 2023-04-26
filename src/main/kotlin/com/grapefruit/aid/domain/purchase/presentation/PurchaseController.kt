@@ -1,10 +1,11 @@
 package com.grapefruit.aid.domain.purchase.presentation
 
 import com.grapefruit.aid.domain.purchase.presentation.dto.request.CreatePurchaseReqDto
+import com.grapefruit.aid.domain.purchase.presentation.dto.request.ModifyPurchaseQuantityReqDto
 import com.grapefruit.aid.domain.purchase.presentation.dto.response.GetPurchaseResDto
 import com.grapefruit.aid.domain.purchase.service.CreatePurchaseService
 import com.grapefruit.aid.domain.purchase.service.DeleteMenuFromPurchaseService
-import com.grapefruit.aid.domain.purchase.service.DeletePurchaseService
+import com.grapefruit.aid.domain.purchase.service.ModifyPurchaseQuantityService
 import com.grapefruit.aid.domain.purchase.service.GetPurchaseListService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -15,7 +16,7 @@ import javax.validation.Valid
 @RequestMapping("/purchase")
 class PurchaseController(
     private val createPurchaseService: CreatePurchaseService,
-    private val deletePurchaseService: DeletePurchaseService,
+    private val modifyPurchaseQuantityService: ModifyPurchaseQuantityService,
     private val deleteMenuFromPurchaseService: DeleteMenuFromPurchaseService,
     private val getPurchaseListService: GetPurchaseListService
 ) {
@@ -26,9 +27,10 @@ class PurchaseController(
         return ResponseEntity(HttpStatus.CREATED)
     }
 
-    @DeleteMapping("/{seat_id}")
-    fun deleteOrder(@PathVariable("seat_id") seatId: Long): ResponseEntity<Void> {
-        deletePurchaseService.execute(seatId)
+    @PatchMapping("/{purchase_id}")
+    fun deleteOrder(@PathVariable("purchase_id") purchaseId: Long,
+                    @RequestBody @Valid modifyPurchaseQuantityReqDto: ModifyPurchaseQuantityReqDto): ResponseEntity<Void> {
+        modifyPurchaseQuantityService.execute(purchaseId, modifyPurchaseQuantityReqDto)
         return ResponseEntity.noContent().build()
     }
 
