@@ -1,5 +1,7 @@
 package com.grapefruit.aid.domain.purchase.service
 
-interface DeletePurchaseService {
-    fun execute(seatId: Long)
+import com.grapefruit.aid.domain.purchase.presentation.dto.request.ModifyPurchaseQuantityReqDto
+
+interface ModifyPurchaseQuantityService {
+    fun execute(purchaseId: Long, modifyPurchaseQuantityReqDto: ModifyPurchaseQuantityReqDto)
 }

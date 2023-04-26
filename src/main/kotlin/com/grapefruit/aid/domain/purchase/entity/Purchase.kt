@@ -2,6 +2,7 @@ package com.grapefruit.aid.domain.purchase.entity
 
 import com.grapefruit.aid.domain.menu.entity.Menu
 import com.grapefruit.aid.domain.purchase.presentation.dto.MenuInfoDto
+import com.grapefruit.aid.domain.purchase.presentation.dto.request.ModifyPurchaseQuantityReqDto
 import com.grapefruit.aid.domain.seat.entity.Seat
 import com.grapefruit.aid.global.entity.BaseIdEntity
 import javax.persistence.*
@@ -16,4 +17,14 @@ class Purchase(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "menu_id", nullable = false)
     val menu: Menu,
-): BaseIdEntity()
+): BaseIdEntity() {
+    fun update(modifyPurchaseQuantityReqDto: ModifyPurchaseQuantityReqDto): Purchase {
+        val purchase = Purchase(
+            quantity = modifyPurchaseQuantityReqDto.quantity,
+            seat = this.seat,
+            menu = this.menu
+        )
+        purchase.id = this.id
+        return purchase
+    }
+}
