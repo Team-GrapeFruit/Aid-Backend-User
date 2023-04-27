@@ -18,10 +18,7 @@ class GetPurchaseListServiceImpl(
 ): GetPurchaseListService {
     override fun execute(seatId: Long): List<GetPurchaseResDto> {
         val seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
-        val purchases: List<Purchase> = purchaseRepository.findAllBySeat(seat)
-
-        return purchases.map {
-                GetPurchaseResDto(it)
-        }
+        return purchaseRepository.findAllBySeat(seat)
+                .map { GetPurchaseResDto(it) }
     }
 }
