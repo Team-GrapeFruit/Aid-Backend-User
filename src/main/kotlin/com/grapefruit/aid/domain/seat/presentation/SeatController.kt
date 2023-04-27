@@ -1,6 +1,6 @@
 package com.grapefruit.aid.domain.seat.presentation
 
-import com.grapefruit.aid.domain.seat.presentation.dto.response.SingleSeatResponse
+import com.grapefruit.aid.domain.seat.presentation.dto.response.SeatListResponse
 import com.grapefruit.aid.domain.seat.service.SeatListService
 import com.grapefruit.aid.domain.seat.service.UnUseSeatService
 import com.grapefruit.aid.domain.seat.service.UseSeatService
@@ -31,8 +31,8 @@ class SeatController(
     }
 
     @GetMapping("/{store_id}")
-    fun getSeatList(@PathVariable("store_id") storeId: Long):ResponseEntity<List<SingleSeatResponse>> {
-        val result: List<SingleSeatResponse> = seatListService.execute(storeId)
+    fun getSeatList(@PathVariable("store_id") storeId: Long):ResponseEntity<List<SeatListResponse>> {
+        val result: List<SeatListResponse> = seatListService.execute(storeId)
         return ResponseEntity.ok(result)
     }
 }

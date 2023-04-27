@@ -1,7 +1,7 @@
 package com.grapefruit.aid.domain.seat.service
 
-import com.grapefruit.aid.domain.seat.presentation.dto.response.SingleSeatResponse
+import com.grapefruit.aid.domain.seat.presentation.dto.response.SeatListResponse
 
 interface SeatListService {
-    fun execute(storeId: Long): List<SingleSeatResponse>
+    fun execute(storeId: Long): SeatListResponse
 }
