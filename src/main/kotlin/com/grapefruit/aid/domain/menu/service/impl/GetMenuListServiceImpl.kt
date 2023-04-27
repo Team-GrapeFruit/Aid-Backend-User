@@ -16,9 +16,9 @@ class GetMenuListServiceImpl(
     private val storeRepository: StoreRepository,
     private val menuRepository: MenuRepository
 ): GetMenuListService {
-    override fun execute(storeId: Long): List<GetMenuListResDto> {
+    override fun execute(storeId: Long): GetMenuListResDto {
         val store: Store = storeRepository.findByIdOrNull(storeId) ?: throw StoreNotFoundException()
-        return menuRepository.findAllByStore(store)
-                .map { GetMenuListResDto(it) }
+        return GetMenuListResDto(menuRepository.findAllByStore(store)
+            .map { GetMenuListResDto.SingleGetMenuResDto(it) })
     }
 }
