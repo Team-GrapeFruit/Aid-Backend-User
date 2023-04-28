@@ -16,10 +16,10 @@ class GetMenuByCategoryService(
     private val categoryRepository: CategoryRepository,
     private val menuCategoryRepository: MenuCategoryRepository
 ): GetMenuByCategoryService {
-    override fun execute(categoryId: Long): List<GetMenuByCategoryResDto> {
+    override fun execute(categoryId: Long): GetMenuByCategoryResDto {
         val category = categoryRepository.findByIdOrNull(categoryId) ?: throw CategoryNotFoundException()
-        return menuCategoryRepository.findAllByCategory(category)
-            .map { GetMenuByCategoryResDto(it.menu) }
+        return GetMenuByCategoryResDto(menuCategoryRepository.findAllByCategory(category)
+            .map { GetMenuByCategoryResDto.SingleGetMenuByCategoryResDto(it.menu) })
     }
 
 }

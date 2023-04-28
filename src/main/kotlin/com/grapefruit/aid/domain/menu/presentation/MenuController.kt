@@ -26,8 +26,8 @@ class MenuController(
     }
 
     @GetMapping("/category/{category_id}")
-    fun getMenuByCategory(@PathVariable("category_id") categoryId: Long): ResponseEntity<List<GetMenuByCategoryResDto>> {
-        val result: List<GetMenuByCategoryResDto> = getMenuByCategoryService.execute(categoryId)
+    fun getMenuByCategory(@PathVariable("category_id") categoryId: Long): ResponseEntity<GetMenuByCategoryResDto> {
+        val result: GetMenuByCategoryResDto = getMenuByCategoryService.execute(categoryId)
         return ResponseEntity.ok(result)
     }
 
