@@ -5,7 +5,11 @@ import com.grapefruit.aid.domain.menu.presentation.dto.response.GetMenuDetailRes
 import com.grapefruit.aid.domain.menu.repository.MenuRepository
 import com.grapefruit.aid.domain.menu.service.GetMenuDetailService
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
+@Service
+@Transactional(readOnly = true)
 class GetMenuDetailServiceImpl(
     private val menuRepository: MenuRepository
 ): GetMenuDetailService {
