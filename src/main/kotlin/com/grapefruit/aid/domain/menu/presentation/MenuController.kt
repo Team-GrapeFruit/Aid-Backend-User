@@ -20,8 +20,8 @@ class MenuController(
     private val getMenuDetailService: GetMenuDetailService
 ) {
     @GetMapping("/{store_id}")
-    fun getMenuList(@PathVariable("store_id") storeId: Long): ResponseEntity<List<GetMenuListResDto>> {
-        val result: List<GetMenuListResDto> = getMenuListService.execute(storeId)
+    fun getMenuList(@PathVariable("store_id") storeId: Long): ResponseEntity<GetMenuListResDto> {
+        val result: GetMenuListResDto = getMenuListService.execute(storeId)
         return ResponseEntity.ok(result)
     }
 
