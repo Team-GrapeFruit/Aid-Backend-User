@@ -31,8 +31,8 @@ class SeatController(
     }
 
     @GetMapping("/{store_id}")
-    fun getSeatList(@PathVariable("store_id") storeId: Long):ResponseEntity<List<SeatListResponse>> {
-        val result: List<SeatListResponse> = seatListService.execute(storeId)
+    fun getSeatList(@PathVariable("store_id") storeId: Long):ResponseEntity<SeatListResponse> {
+        val result = seatListService.execute(storeId)
         return ResponseEntity.ok(result)
     }
 }
