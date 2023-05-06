@@ -3,7 +3,6 @@ package com.grapefruit.aid.domain.menu.service.impl
 import com.grapefruit.aid.domain.category.exception.CategoryNotFoundException
 import com.grapefruit.aid.domain.category.repository.CategoryRepository
 import com.grapefruit.aid.domain.category.repository.MenuCategoryRepository
-import com.grapefruit.aid.domain.menu.entity.Menu
 import com.grapefruit.aid.domain.menu.presentation.dto.response.GetMenuByCategoryResDto
 import com.grapefruit.aid.domain.menu.service.GetMenuByCategoryService
 import org.springframework.data.repository.findByIdOrNull

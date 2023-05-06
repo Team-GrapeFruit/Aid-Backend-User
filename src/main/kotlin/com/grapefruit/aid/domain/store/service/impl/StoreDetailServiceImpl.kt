@@ -1,6 +1,5 @@
 package com.grapefruit.aid.domain.store.service.impl
 
-import com.grapefruit.aid.domain.seat.repository.SeatRepository
 import com.grapefruit.aid.domain.store.entity.Store
 import com.grapefruit.aid.domain.store.exception.StoreNotFoundException
 import com.grapefruit.aid.domain.store.presentation.dto.response.StoreDetailResDto

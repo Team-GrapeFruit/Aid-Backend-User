@@ -1,7 +1,6 @@
 package com.grapefruit.aid.domain.purchase.entity
 
 import com.grapefruit.aid.domain.menu.entity.Menu
-import com.grapefruit.aid.domain.purchase.presentation.dto.MenuInfoDto
 import com.grapefruit.aid.domain.purchase.presentation.dto.request.ModifyPurchaseQuantityReqDto
 import com.grapefruit.aid.domain.seat.entity.Seat
 import com.grapefruit.aid.global.entity.BaseIdEntity

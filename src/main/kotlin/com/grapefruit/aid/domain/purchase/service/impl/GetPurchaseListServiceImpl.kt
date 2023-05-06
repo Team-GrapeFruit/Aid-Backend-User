@@ -1,6 +1,5 @@
 package com.grapefruit.aid.domain.purchase.service.impl
 
-import com.grapefruit.aid.domain.purchase.entity.Purchase
 import com.grapefruit.aid.domain.purchase.presentation.dto.response.GetPurchaseResDto
 import com.grapefruit.aid.domain.purchase.repository.PurchaseRepository
 import com.grapefruit.aid.domain.purchase.service.GetPurchaseListService
