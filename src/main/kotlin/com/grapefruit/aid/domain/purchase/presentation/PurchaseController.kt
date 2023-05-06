@@ -21,15 +21,15 @@ class PurchaseController(
     private val getPurchaseListService: GetPurchaseListService
 ) {
     @PostMapping("/{seat_id}")
-    fun createOrder(@PathVariable("seat_id") seatId: Long,
-                    @RequestBody @Valid createPurchaseReqDto: CreatePurchaseReqDto): ResponseEntity<Void> {
+    fun createPurchase(@PathVariable("seat_id") seatId: Long,
+                       @RequestBody @Valid createPurchaseReqDto: CreatePurchaseReqDto): ResponseEntity<Void> {
         createPurchaseService.execute(seatId, createPurchaseReqDto)
         return ResponseEntity(HttpStatus.CREATED)
     }
 
     @PatchMapping("/{purchase_id}")
-    fun deleteOrder(@PathVariable("purchase_id") purchaseId: Long,
-                    @RequestBody @Valid modifyPurchaseQuantityReqDto: ModifyPurchaseQuantityReqDto): ResponseEntity<Void> {
+    fun modifyPurchaseQuantity(@PathVariable("purchase_id") purchaseId: Long,
+                               @RequestBody @Valid modifyPurchaseQuantityReqDto: ModifyPurchaseQuantityReqDto): ResponseEntity<Void> {
         modifyPurchaseQuantityService.execute(purchaseId, modifyPurchaseQuantityReqDto)
         return ResponseEntity.noContent().build()
     }
