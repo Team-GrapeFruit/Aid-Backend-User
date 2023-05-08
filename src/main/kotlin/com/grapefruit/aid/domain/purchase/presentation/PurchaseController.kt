@@ -7,6 +7,7 @@ import com.grapefruit.aid.domain.purchase.service.CreatePurchaseService
 import com.grapefruit.aid.domain.purchase.service.DeleteMenuFromPurchaseService
 import com.grapefruit.aid.domain.purchase.service.ModifyPurchaseQuantityService
 import com.grapefruit.aid.domain.purchase.service.GetPurchaseListService
+import com.grapefruit.aid.domain.purchase.service.impl.DeletePurchaseServiceImpl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -17,6 +18,7 @@ import javax.validation.Valid
 class PurchaseController(
     private val createPurchaseService: CreatePurchaseService,
     private val modifyPurchaseQuantityService: ModifyPurchaseQuantityService,
+    private val deletePurchaseServiceImpl: DeletePurchaseServiceImpl,
     private val deleteMenuFromPurchaseService: DeleteMenuFromPurchaseService,
     private val getPurchaseListService: GetPurchaseListService
 ) {
@@ -31,6 +33,12 @@ class PurchaseController(
     fun modifyPurchaseQuantity(@PathVariable("purchase_id") purchaseId: Long,
                                @RequestBody @Valid modifyPurchaseQuantityReqDto: ModifyPurchaseQuantityReqDto): ResponseEntity<Void> {
         modifyPurchaseQuantityService.execute(purchaseId, modifyPurchaseQuantityReqDto)
+        return ResponseEntity.noContent().build()
+    }
+
+    @DeleteMapping("/{seat_id}")
+    fun deleteAllPurchase(@PathVariable("seat_id") seatId: Long): ResponseEntity<Void> {
+        deletePurchaseServiceImpl.execute(seatId)
         return ResponseEntity.noContent().build()
     }
 
