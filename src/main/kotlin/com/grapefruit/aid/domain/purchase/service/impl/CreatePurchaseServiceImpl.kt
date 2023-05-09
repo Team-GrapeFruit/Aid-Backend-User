@@ -23,7 +23,7 @@ class CreatePurchaseServiceImpl(
 ): CreatePurchaseService {
     override fun execute(seatId: Long, createPurchaseReqDto: CreatePurchaseReqDto) {
         val seat: Seat = seatRepository.findByIdOrNull(seatId) ?: throw SeatNotFoundException()
-        val purchaseList = createPurchaseReqDto.menusReqDto
+        val purchaseList = createPurchaseReqDto.menuListReqDto
                             .map { Purchase(it.quantity, seat, findMenuById(it.menuId)) }
         purchaseRepository.saveAll(purchaseList)
     }

@@ -1,10 +1,9 @@
 package com.grapefruit.aid.domain.purchase.presentation.dto.request
 
-import com.grapefruit.aid.global.entity.BaseIdEntity
 import javax.validation.constraints.NotNull
 
 data class CreatePurchaseReqDto(
-    val menusReqDto: List<MenuReqDto>
+    val menuListReqDto: List<MenuReqDto>
 ) {
     data class MenuReqDto(
         @field:NotNull
